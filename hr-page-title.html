@@ -6,7 +6,7 @@
     <link rel="shortcut icon" href="favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>█████████████████████████</title>
+    <title>&nbsp;</title>
 </head>
 
 <body>
@@ -20,12 +20,14 @@
             if (!results[2]) return '';
             return decodeURIComponent(results[2].replace(/\+/g, ' '));
         }
-        const char = getParameterByName("char");
-        const repeat = getParameterByName("repeat");
-        if (repeat && char) {
-            const title = Array(Number(repeat)).fill(char).join("");
-            document.title = title;
-        }
+        const char = getParameterByName("char") || "█";
+        const repeat = getParameterByName("repeat") || 20;
+        const title = getParameterByName("title") || "";
+        const titleLength = title.length || 1;
+
+        const pre = Array(Number(repeat / 2)).fill(char).join("");
+        const post = Array(Number(repeat / 2)).fill(char).join("");
+        document.title = pre + title + post;
 
     </script>
 </body>
