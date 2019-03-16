@@ -1,0 +1,7 @@
+{
+    "name": "getrandommdn",
+    "dependencies": {
+        "request": "^2.88.0",
+        "xml2js": "^0.4.19"
+    }
+}
