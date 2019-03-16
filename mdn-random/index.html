@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MDN Random</title>
+</head>
+
+<body>
+    <script src="../utils.js"></script>
+    <script>
+        function getRandom(maximum) {
+            return Math.floor(Math.random() * maximum);
+        }
+        function getRandomLangType() {
+            switch (getRandom(2)) {
+                case 0:
+                    return "js";
+                case 1:
+                    return "css";
+            }
+        }
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                const response = this.responseText;
+                const urls = JSON.parse(response).urls;
+                const lang = getParameterByName("lang") || getRandomLangType();
+                const url = urls[lang][getRandom(urls[lang].length)];
+                window.location.href = url;
+            }
+        };
+        xhttp.open("GET", "./urls.json", true);
+        xhttp.send();
+    </script>
+</body>
+
+</html>
