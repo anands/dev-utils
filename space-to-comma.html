@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Space To Comma Converter</title>
+</head>
+
+<body>
+
+    <textarea id="input" cols="30" rows="10"></textarea>
+    <button id="convertButton">Convert</button>
+    <textarea id="output" cols="30" rows="10"></textarea>
+
+
+    <script>
+        const convertButton = document.querySelector("#convertButton");
+        const input = document.querySelector("#input");
+        const output = document.querySelector("#output");
+        convertButton.addEventListener("click", (e) => {
+            const inputContent = input.value.trim().toLowerCase();
+            const outputContent = inputContent.split(" ").join("-");
+            output.value = outputContent;
+        });
+    </script>
+</body>
+
+</html>
