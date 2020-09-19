@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concat Images</title>
+    <style>
+        .image-container img {
+            display: block;
+            margin: 10px 0;
+            max-width: 100%;
+        }
+
+        @media print {
+            .disable-on-print {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="disable-on-print">
+        <input type="text" id="body-width" placeholder="Body width in px" onchange="changeBodyWidth()" />
+        <input type="file" accept="image/png, image/jpeg" onchange="test()" />
+    </div>
+    <div class="image-container">
+
+    </div>
+    <script>
+        function changeBodyWidth() {
+            const width = Number(document.querySelector("#body-width").value);
+            if(width) {
+                document.body.style.width = `${width}px`;
+            }
+        }
+        const imageContainer = document.querySelector(".image-container");
+        function test() {
+            const file = document.querySelector("input[type='file']");
+            var reader = new FileReader();
+            reader.readAsDataURL(file.files[0]);
+            reader.onload = function (evt) {
+                const img = document.createElement("img");
+                img.src = evt.target.result;
+                imageContainer.appendChild(img);
+            }
+            reader.onerror = function (evt) {
+                document.getElementById("fileContents").innerHTML = "error reading file";
+            }
+        }
+    </script>
+</body>
+
+</html>
